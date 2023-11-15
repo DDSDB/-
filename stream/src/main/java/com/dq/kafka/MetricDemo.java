@@ -111,14 +111,15 @@ public class MetricDemo {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        KafkaProducer<String, String> producer = KafkaProducerUtil
-                .getProducer("10.241.3.201:9093");
-        for (int i = 0; i < 10000; i++) {
-            producer.send(KafkaProducerUtil.createRecord("test_cluster3",
-                    JacksonUtils.obj2JsonString(randomMetric())));
-            TimeUnit.SECONDS.sleep(1);
-        }
-        producer.close();
+//        KafkaProducer<String, String> producer = KafkaProducerUtil
+//                .getProducer("10.241.3.201:9093");
+//        for (int i = 0; i < 10000; i++) {
+//            producer.send(KafkaProducerUtil.createRecord("test_cluster3",
+//                    JacksonUtils.obj2JsonString(randomMetric())));
+//            TimeUnit.SECONDS.sleep(1);
+//        }
+//        producer.close();
+        System.out.println(JacksonUtils.obj2JsonString(randomMetric()));
     }
 
     private static final String FIRST = "system";

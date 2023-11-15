@@ -16,7 +16,9 @@ import java.util.Map;
 public class TraceDemo {
 
     public static void main(String[] args) {
-        getDataFromDemo();
+        for (int i = 0; i < 1024; i++) {
+            getDataFromDemo();
+        }
     }
 
     public static void getDataFromDemo() {
@@ -25,28 +27,28 @@ public class TraceDemo {
         //for (Map<String, Object> demo : demos) {
         Map<String, Object> demo = demos.get(0);
         Map<String, Object> demo1 = demos.get(1);
-            int i = 0;
-            // demo 是一个网络设备的调用链信息
-            // 首先产生一个服务A
-            getA(demo, ++i);
+        int i = 0;
+        // demo 是一个网络设备的调用链信息
+        // 首先产生一个服务A
+        getA(demo, ++i);
 
-            String c = getC(demo, ++i, demo.get("parentSpanId").toString());
+        String c = getC(demo, ++i, demo.get("parentSpanId").toString());
 
-            // 然后产生一个网络设备B
-            String spanIdOfB = getB(demo, c);
-            String spanIdOfc = getB2(demo1, spanIdOfB);
+        // 然后产生一个网络设备B
+        String spanIdOfB = getB(demo, c);
+        String spanIdOfc = getB2(demo1, spanIdOfB);
 
-            //String c = getC(demo, ++i, demo.get("parentSpanId").toString());
+        //String c = getC(demo, ++i, demo.get("parentSpanId").toString());
 
-            // 最后产生一个服务C
-            // String c = getC(demo, ++i, spanIdOfB);
+        // 最后产生一个服务C
+        // String c = getC(demo, ++i, spanIdOfB);
 
-            //getD(demo, i, c);
+        //getD(demo, i, c);
 
-            //getE(demo, i, c);
+        //getE(demo, i, c);
 
-            //System.out.println(i);
-            //break;
+        //System.out.println(i);
+        //break;
         //}
     }
 
@@ -68,7 +70,7 @@ public class TraceDemo {
         spansBuilder.setEndTimeUnixNano(startTime + 1000000L);
         Map<String, String> header = Maps.newHashMap();
         header.put("GUID", "f630aa99-a4a4-4487-a738-d908f1d9815f");
-        HttpUtils.INSTANCE.sendPostByte("http://10.241.20.49:4318/v1/traces", header,
+        HttpUtils.INSTANCE.sendPostByte("http://10.241.3.201:4318/integration/opentelemetry/trace/8876e686-95b1-49b0-8769-d9f60305af30", header,
                 builder.build().toByteArray());
     }
 
@@ -94,7 +96,7 @@ public class TraceDemo {
         spansBuilder.setEndTimeUnixNano(startTime + (long) demo.get("duration") * 1000000L);
         Map<String, String> header = Maps.newHashMap();
         header.put("GUID", "f630aa99-a4a4-4487-a738-d908f1d9815f");
-        HttpUtils.INSTANCE.sendPostByte("http://10.241.20.49:4318/v1/traces", header,
+        HttpUtils.INSTANCE.sendPostByte("http://10.241.3.201:4318/integration/opentelemetry/trace/8876e686-95b1-49b0-8769-d9f60305af30", header,
                 builder.build().toByteArray());
         return spanId;
     }
@@ -121,7 +123,7 @@ public class TraceDemo {
         spansBuilder.setEndTimeUnixNano(startTime + (long) demo.get("duration") * 1000000L);
         Map<String, String> header = Maps.newHashMap();
         header.put("GUID", "f630aa99-a4a4-4487-a738-d908f1d9815f");
-        HttpUtils.INSTANCE.sendPostByte("http://10.241.20.49:4318/v1/traces", header,
+        HttpUtils.INSTANCE.sendPostByte("http://10.241.3.201:4318/integration/opentelemetry/trace/8876e686-95b1-49b0-8769-d9f60305af30", header,
                 builder.build().toByteArray());
         return spanId;
     }
@@ -147,7 +149,7 @@ public class TraceDemo {
         spansBuilder.setEndTimeUnixNano(startTime + 7 * 1000000L);
         Map<String, String> header = Maps.newHashMap();
         header.put("GUID", "f630aa99-a4a4-4487-a738-d908f1d9815f");
-        HttpUtils.INSTANCE.sendPostByte("http://10.241.20.49:4318/v1/traces", header,
+        HttpUtils.INSTANCE.sendPostByte("http://10.241.3.201:4318/integration/opentelemetry/trace/8876e686-95b1-49b0-8769-d9f60305af30", header,
                 builder.build().toByteArray());
         return spanId;
     }
@@ -172,7 +174,7 @@ public class TraceDemo {
         spansBuilder.setEndTimeUnixNano(startTime + 25 * 1000000L);
         Map<String, String> header = Maps.newHashMap();
         header.put("GUID", "f630aa99-a4a4-4487-a738-d908f1d9815f");
-        HttpUtils.INSTANCE.sendPostByte("http://10.241.20.49:4318/v1/traces", header,
+        HttpUtils.INSTANCE.sendPostByte("http://10.241.3.201:4318/integration/opentelemetry/trace/8876e686-95b1-49b0-8769-d9f60305af30", header,
                 builder.build().toByteArray());
         return spanId;
     }
